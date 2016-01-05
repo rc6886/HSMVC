@@ -18,7 +18,7 @@ namespace HSMVC.Controllers.Validation
             RuleFor(x => x.Cost).NotNull().WithMessage(ConferenceValidatorHelper.RequiredMessage("Cost"));
 
             Custom(conference => ConferenceValidatorHelper.DoesConferenceNameAlreadyExist(conference.Name)
-                ? new ValidationFailure("Name", "The conference name already exists.")
+                ? new ValidationFailure("Name", string.Format("The conference {0} name already exists.", conference.Name))
                 : null);
         }
     }
