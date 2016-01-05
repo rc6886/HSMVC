@@ -1,7 +1,12 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using AutoMapper;
+using FluentValidation.Mvc;
 using HSMVC.DependencyResolution;
+using HSMVC.Infrastructure.AutoMapper;
+using HSMVC.Infrastructure.FluentValidation;
+using StructureMap;
 
 namespace HSMVC
 {
@@ -12,8 +17,12 @@ namespace HSMVC
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            var container = IoC.Initialize();
-            DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
+            StructuremapMvc.Start();
+            Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperProfile>());
+            FluentValidationModelValidatorProvider.Configure(provider =>
+            {
+                provider.ValidatorFactory = new ValidatorFactory();
+            });
         }
     }
 }

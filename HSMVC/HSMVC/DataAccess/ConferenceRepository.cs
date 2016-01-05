@@ -47,7 +47,14 @@ namespace HSMVC.DataAccess
 
         public void Save(Conference conference)
         {
-            _session.SaveOrUpdate(conference);
+            using (_session)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    _session.SaveOrUpdate(conference);
+                    transaction.Commit();
+                }
+            }
         }
     }
 }

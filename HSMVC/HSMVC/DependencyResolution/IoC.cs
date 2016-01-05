@@ -17,6 +17,8 @@
 
 
 using System.Runtime.InteropServices.ComTypes;
+using FluentValidation;
+using HSMVC.Controllers.Validation;
 using HSMVC.Infrastructure;
 using NHibernate;
 using StructureMap;
@@ -30,9 +32,9 @@ namespace HSMVC.DependencyResolution {
                                     {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
+                                        scan.AddAllTypesOf(typeof (IValidator<>));
                                     });
                             x.For<ISession>().Use(y => NHibernateHelper.OpenSession());
-                            //                x.For<IExample>().Use<Example>();
                         });
             return ObjectFactory.Container;
         }

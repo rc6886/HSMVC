@@ -40,8 +40,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.1.0.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC4.5.1.0.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
@@ -124,7 +133,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\navbar.css" />
+    <Content Include="Content\site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -147,6 +156,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\ConferenceController.cs" />
+    <Compile Include="Controllers\Commands\ConferenceEditCommand.cs" />
+    <Compile Include="Controllers\Validation\ConferenceEditCommandValidator.cs" />
     <Compile Include="DataAccess\ConferenceRepository.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
@@ -155,6 +166,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AutoMapper\AutoMapperProfile.cs" />
+    <Compile Include="Infrastructure\FluentValidation\ValidatorFactory.cs" />
     <Compile Include="Infrastructure\Mappings\ConferenceMap.cs" />
     <Compile Include="Infrastructure\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,6 +177,7 @@
     <Content Include="packages.config" />
     <Content Include="Views\Conference\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Conference\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

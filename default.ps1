@@ -21,7 +21,7 @@ $rh_output_path = "$rh_path\output"
 $rh_cmd_timeout = 600
 $rh_version_file = "$src\HSMVC\bin\HSMVC.dll"
 
-task default -depends RebuildDatabase
+task default -depends RebuildDatabase, Test
 
 task CommonAssemblyInfo {
     $version = (Get-Date).ToString("yyyy.MM.dd.HHmm")

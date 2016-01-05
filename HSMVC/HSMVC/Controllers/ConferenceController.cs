@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using HSMVC.Controllers.Commands;
 using HSMVC.DataAccess;
+using HSMVC.Domain;
 
 namespace HSMVC.Controllers
 {
@@ -24,7 +27,22 @@ namespace HSMVC.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            throw new NotImplementedException();
+            var conference = _repository.Load(id);
+            var command = Mapper.Map<ConferenceEditCommand>(conference);
+            return View(command);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ConferenceEditCommand command)
+        {
+            if (!ModelState.IsValid) return View(command);
+
+            var conference = _repository.Load(command.Id);
+            conference.ChangeName(command.Name);
+            conference.ChangeCost(command.Cost);
+            conference.ChangeDates(command.StartDate.Value, command.EndDate.Value);
+            _repository.Save(conference);
+            return RedirectToAction("Index");
         }
     }
 }
