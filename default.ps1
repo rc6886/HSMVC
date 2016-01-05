@@ -34,6 +34,10 @@ task Compile -depends CommonAssemblyInfo {
     exec { msbuild /t:build /v:q /nologo /p:Configuration=$configuration $sln }
 }
 
+task Test -depends RebuildDatabase {
+	exec { & "$src\packages\NUnit.Console.3.0.1\tools\nunit3-console.exe" "$src\HSMVC.Tests\bin\Debug\HSMVC.Tests.dll" }
+}
+
 task IntegrationTest -depends Compile {
     $fixieRunners = @(gci $src\packages -rec -filter Fixie.Console.exe)
 
