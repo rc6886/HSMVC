@@ -155,9 +155,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Controllers\Commands\ConferenceAddCommand.cs" />
     <Compile Include="Controllers\ConferenceController.cs" />
     <Compile Include="Controllers\Commands\ConferenceEditCommand.cs" />
+    <Compile Include="Controllers\Validation\ConferenceAddCommandValidator.cs" />
     <Compile Include="Controllers\Validation\ConferenceEditCommandValidator.cs" />
+    <Compile Include="Controllers\Validation\ConferenceValidatorHelper.cs" />
     <Compile Include="DataAccess\ConferenceRepository.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
@@ -167,7 +170,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AutoMapper\AutoMapperProfile.cs" />
-    <Compile Include="Infrastructure\FluentValidation\ValidatorFactory.cs" />
+    <Compile Include="Infrastructure\FluentValidation\StructureMapValidatorFactory.cs" />
     <Compile Include="Infrastructure\Mappings\ConferenceMap.cs" />
     <Compile Include="Infrastructure\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +181,7 @@
     <Content Include="Views\Conference\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Conference\Edit.cshtml" />
+    <Content Include="Views\Conference\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

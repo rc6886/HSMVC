@@ -20,9 +20,12 @@ using System.Runtime.InteropServices.ComTypes;
 using FluentValidation;
 using HSMVC.Controllers.Validation;
 using HSMVC.Infrastructure;
+using HSMVC.Infrastructure.FluentValidation;
 using NHibernate;
 using StructureMap;
 using StructureMap.Graph;
+using AssemblyScanner = FluentValidation.AssemblyScanner;
+
 namespace HSMVC.DependencyResolution {
     public static class IoC {
         public static IContainer Initialize() {
@@ -31,10 +34,15 @@ namespace HSMVC.DependencyResolution {
                             x.Scan(scan =>
                                     {
                                         scan.TheCallingAssembly();
+                                        scan.AddAllTypesOf(typeof(IValidator<>));
                                         scan.WithDefaultConventions();
-                                        scan.AddAllTypesOf(typeof (IValidator<>));
                                     });
                             x.For<ISession>().Use(y => NHibernateHelper.OpenSession());
+                            AssemblyScanner.FindValidatorsInAssemblyContaining<StructureMapValidatorFactory>()
+                                .ForEach(result =>
+                                {
+                                    x.For(result.InterfaceType).Use(result.ValidatorType);
+                                });
                         });
             return ObjectFactory.Container;
         }

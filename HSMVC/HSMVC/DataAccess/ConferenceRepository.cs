@@ -42,7 +42,7 @@ namespace HSMVC.DataAccess
 
         public Conference FindByName(string name)
         {
-            return _session.Query<Conference>().Single(x => x.Name == name);
+            return _session.Query<Conference>().SingleOrDefault(x => x.Name == name);
         }
 
         public void Save(Conference conference)

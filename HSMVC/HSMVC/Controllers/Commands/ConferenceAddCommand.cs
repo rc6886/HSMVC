@@ -1,14 +1,14 @@
-using System;
+﻿using System;
 
 namespace HSMVC.Controllers.Commands
 {
-    public class ConferenceEditCommand
+    public class ConferenceAddCommand
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
-        public string HashTag { get; set; }
+        public string Hashtag { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public decimal Cost { get; set; }
+        public decimal? Cost { get; set; }
+        public int? AttendeeCount { get; set; }
     }
 }

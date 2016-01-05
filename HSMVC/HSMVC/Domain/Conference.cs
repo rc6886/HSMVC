@@ -15,6 +15,17 @@ namespace HSMVC.Domain
 
         public Conference() {}
 
+        public Conference(string name, string hashTag, DateTime startDate, DateTime endDate, decimal cost, int attendeeCount, int sessionCount)
+        {
+            Name = name;
+            HashTag = hashTag;
+            StartDate = startDate;
+            EndDate = endDate;
+            Cost = cost;
+            AttendeeCount = attendeeCount;
+            SessionCount = sessionCount;
+        }
+
 
         public virtual void ChangeName(string name)
         {

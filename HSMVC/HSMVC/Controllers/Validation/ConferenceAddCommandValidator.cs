@@ -4,9 +4,9 @@ using HSMVC.Controllers.Commands;
 
 namespace HSMVC.Controllers.Validation
 {
-    public class ConferenceEditCommandValidator : AbstractValidator<ConferenceEditCommand>
+    public class ConferenceAddCommandValidator : AbstractValidator<ConferenceAddCommand>
     {
-        public ConferenceEditCommandValidator()
+        public ConferenceAddCommandValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage(ConferenceValidatorHelper.RequiredMessage("Name"));
             RuleFor(x => x.StartDate)

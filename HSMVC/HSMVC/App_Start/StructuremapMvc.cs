@@ -25,10 +25,11 @@ using StructureMap;
 
 namespace HSMVC {
     public static class StructuremapMvc {
-        public static void Start() {
+        public static IContainer Start() {
 			IContainer container = IoC.Initialize();
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapDependencyResolver(container);
+            return container;
         }
     }
 }

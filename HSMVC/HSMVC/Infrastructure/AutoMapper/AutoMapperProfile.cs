@@ -10,6 +10,7 @@ namespace HSMVC.Infrastructure.AutoMapper
         {
             CreateMap<Conference, ConferenceEditCommand>();
             CreateMap<ConferenceEditCommand, Conference>();
+            CreateMap<ConferenceAddCommand, Conference>();
         }
     }
 }

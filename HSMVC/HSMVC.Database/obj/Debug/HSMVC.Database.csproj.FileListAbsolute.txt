@@ -1,0 +1,4 @@
+C:\Projects\HSMVC\hsmvc\HSMVC.Database\bin\Debug\HSMVC.Database.dll
+C:\Projects\HSMVC\hsmvc\HSMVC.Database\bin\Debug\HSMVC.Database.pdb
+C:\Projects\HSMVC\hsmvc\HSMVC.Database\obj\Debug\HSMVC.Database.dll
+C:\Projects\HSMVC\hsmvc\HSMVC.Database\obj\Debug\HSMVC.Database.pdb

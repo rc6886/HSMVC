@@ -44,5 +44,21 @@ namespace HSMVC.Controllers
             _repository.Save(conference);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View(new ConferenceAddCommand());
+        }
+
+        [HttpPost]
+        public ActionResult Add(ConferenceAddCommand command)
+        {
+            if (!ModelState.IsValid) return View(command);
+
+            var conference = Mapper.Map<Conference>(command);
+            _repository.Save(conference);
+            return RedirectToAction("Index");
+        }
     }
 }

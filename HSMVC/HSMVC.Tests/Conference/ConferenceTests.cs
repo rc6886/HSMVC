@@ -58,5 +58,24 @@ namespace HSMVC.Tests.Conference
             editedConference.StartDate.ShouldBe(DateTime.Parse("01/01/2000"));
             editedConference.EndDate.ShouldBe(DateTime.Parse("01/01/2005"));
         }
+
+        [Test]
+        public void ShouldAddConference()
+        {
+            var conference = new Domain.Conference("Test Conference", "#Test", DateTime.Parse("03/03/2013"),
+                DateTime.Parse("04/04/2014"), 127, 499, 2);
+
+            _repository.Save(conference);
+
+            var addedConference = _repository.FindByName("Test Conference");
+
+            addedConference.Name.ShouldBe("Test Conference");
+            addedConference.HashTag.ShouldBe("#Test");
+            addedConference.StartDate.ShouldBe(DateTime.Parse("03/03/2013"));
+            addedConference.EndDate.ShouldBe(DateTime.Parse("04/04/2014"));
+            addedConference.Cost.ShouldBe(127);
+            addedConference.AttendeeCount.ShouldBe(499);
+            addedConference.SessionCount.ShouldBe(2);
+        }
     }
 }
