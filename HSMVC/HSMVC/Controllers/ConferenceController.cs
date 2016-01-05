@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
@@ -58,6 +59,31 @@ namespace HSMVC.Controllers
 
             var conference = Mapper.Map<Conference>(command);
             _repository.Save(conference);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult BulkEdit()
+        {
+            var conferences = _repository.GetAll();
+            var editCommands = Mapper.Map<IEnumerable<ConferenceEditCommand>>(conferences).ToList();
+            return View(new ConferenceBulkEditCommand {Commands = editCommands});
+        }
+
+        [HttpPost]
+        public ActionResult BulkEdit(ConferenceBulkEditCommand command)
+        {
+            if (!ModelState.IsValid) return View(command);
+
+            foreach (var editCommand in command.Commands)
+            {
+                var conference = _repository.Load(editCommand.Id);
+                conference.ChangeName(editCommand.Name);
+                conference.ChangeCost(editCommand.Cost);
+                conference.ChangeDates(editCommand.StartDate.Value, editCommand.EndDate.Value);
+                _repository.Save(conference);
+            }
+
             return RedirectToAction("Index");
         }
     }

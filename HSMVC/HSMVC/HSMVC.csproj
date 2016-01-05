@@ -156,6 +156,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\Commands\ConferenceAddCommand.cs" />
+    <Compile Include="Controllers\Commands\ConferenceBulkEditCommand.cs" />
     <Compile Include="Controllers\ConferenceController.cs" />
     <Compile Include="Controllers\Commands\ConferenceEditCommand.cs" />
     <Compile Include="Controllers\Validation\ConferenceAddCommandValidator.cs" />
@@ -182,6 +183,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Conference\Edit.cshtml" />
     <Content Include="Views\Conference\Add.cshtml" />
+    <Content Include="Views\Conference\BulkEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
