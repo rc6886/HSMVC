@@ -25,7 +25,7 @@ task default -depends RebuildDatabase, Test
 
 task CommonAssemblyInfo {
     $version = (Get-Date).ToString("yyyy.MM.dd.HHmm")
-    create-commonAssemblyInfo "$version" $projectName "$hsmvc\CommonAssemblyInfo.cs"
+    create-commonAssemblyInfo "$version" $projectName "$src\CommonAssemblyInfo.cs"
 	$packageVersion = $version
 }
 
